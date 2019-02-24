@@ -1,6 +1,6 @@
 # challenge_404
 
-A new Flutter application.
+Uplabs => 😱 404 Challenge
 
 ## Preview
 ![Alt Text](https://raw.githubusercontent.com/shiburagi/Challenge_404/master/preview/preview_1.gif)
