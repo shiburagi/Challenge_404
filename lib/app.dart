@@ -21,7 +21,7 @@ class _AppPageState extends State<AppPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _notFoundAnimationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
+        duration: const Duration(milliseconds: 700), vsync: this);
     _clearButtonAnimationController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
 

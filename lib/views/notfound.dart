@@ -2,7 +2,6 @@ import 'package:challenge_404/utils/layout.dart';
 import 'package:flutter/material.dart';
 
 class NotFound extends StatelessWidget {
-
   Widget star(context, double size,
       {double top = 0, double left = 0, double right = 0, double bottom = 0}) {
     double scale = MediaQuery.of(context).size.width / 400;
@@ -15,21 +14,36 @@ class NotFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double scale = MediaQuery.of(context).size.width / 400;
+
     return Container(
       child: SingleChildScrollView(
+        padding: EdgeInsets.all(0),
         physics: NeverScrollableScrollPhysics(),
         child: Stack(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              child: Image.asset(
-                "assets/images/planet.png",
-                width: 280,
-                filterQuality: FilterQuality.high,
+            Layout.fill(
+              context,
+              child: Container(
+                child: Image.asset(
+                  "assets/images/planet.png",
+                  width: 280,
+                  filterQuality: FilterQuality.high,
+                ),
+                alignment: Alignment.bottomRight,
               ),
-              alignment: Alignment.bottomRight,
             ),
-
+            Opacity(
+              opacity: 0.7,
+              child: Container(
+                child: Image.asset(
+                  "assets/images/top_banner.png",
+                  filterQuality: FilterQuality.high,
+                  fit: BoxFit.fitWidth,
+                ),
+                alignment: Alignment.bottomRight,
+              ),
+            ),
             Layout.fill(
               context,
               child: Column(
@@ -49,7 +63,7 @@ class NotFound extends StatelessWidget {
                     alignment: Alignment.topLeft,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 8, right: 8),
+                    padding: EdgeInsets.only(left: 16, right: 16),
                     child: Column(
                       children: <Widget>[
                         Text(
@@ -59,7 +73,7 @@ class NotFound extends StatelessWidget {
                               color: Colors.blueAccent),
                         ),
                         Text(
-                          "Wooo, you searching something not in this universe.",
+                          "Wooo, you searching somewhere not in this universe.",
                           style: Theme.of(context)
                               .textTheme
                               .headline
@@ -70,10 +84,10 @@ class NotFound extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 260,
+                    height: 140 * scale,
                   ),
                 ],
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
               ),
             ),
