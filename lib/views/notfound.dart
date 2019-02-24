@@ -59,7 +59,7 @@ class NotFound extends StatelessWidget {
                               color: Colors.blueAccent),
                         ),
                         Text(
-                          "Woo, you searching something not in this universe.",
+                          "Wooo, you searching something not in this universe.",
                           style: Theme.of(context)
                               .textTheme
                               .headline

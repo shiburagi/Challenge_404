@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:challenge_404/app.dart';
+import 'package:flutter/services.dart';
 
 
-void main() => runApp(MyApp());
+void main() =>
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown,])
+        .then((_) {
+      runApp(new MyApp());
+    });
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -12,8 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        primaryColor: Colors.black,
-        fontFamily: "WorkSans"
+          primaryColor: Colors.black,
+          fontFamily: "WorkSans"
       ),
       home: AppPage(title: 'Flutter Demo Home Page'),
       debugShowCheckedModeBanner: false,

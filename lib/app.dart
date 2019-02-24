@@ -1,4 +1,4 @@
-import 'package:challenge_404/dummy/items_2.dart';
+import 'package:challenge_404/dummy/items.dart';
 import 'package:challenge_404/utils/circular_reveal_effect.dart';
 import 'package:challenge_404/views/hotel_list.dart';
 import 'package:challenge_404/views/notfound.dart';
@@ -24,6 +24,30 @@ class _AppPageState extends State<AppPage> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 1000), vsync: this);
     _clearButtonAnimationController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
+
+    searchTextFieldController.addListener(() {
+      setState(() {
+        String value = searchTextFieldController.value.text;
+        RegExp regExp = RegExp(value, caseSensitive: false);
+        items = hotels
+            .where((hotel) =>
+                hotel["name"].toString().contains(regExp) ||
+                hotel["city"].toString().contains(regExp) ||
+                hotel["country"].toString().contains(regExp))
+            .toList();
+        if (items.length == 0) {
+          show404();
+        } else {
+          hide404();
+        }
+
+        if (value.length == 0) {
+          hideClearButton();
+        } else {
+          showClearButton();
+        }
+      });
+    });
   }
 
   @override
@@ -65,26 +89,6 @@ class _AppPageState extends State<AppPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    searchTextFieldController.addListener(() {
-      setState(() {
-        String value = searchTextFieldController.value.text;
-        items = hotels
-            .where((hotel) => hotel["name"].toString().contains(value))
-            .toList();
-        if (items.length == 0) {
-          show404();
-        } else {
-          hide404();
-        }
-
-        if (value.length == 0) {
-          hideClearButton();
-        } else {
-          showClearButton();
-        }
-      });
-    });
-
     return Scaffold(
       appBar: AppBar(
         brightness: Brightness.light,
@@ -93,7 +97,7 @@ class _AppPageState extends State<AppPage> with TickerProviderStateMixin {
         title: Container(
           child: TextFormField(
             decoration: InputDecoration(
-              hintText: "Search..",
+              hintText: "Where?",
               contentPadding:
                   EdgeInsets.only(top: 12, bottom: 12, right: 12, left: 12),
               border: OutlineInputBorder(borderSide: BorderSide(width: 1)),
