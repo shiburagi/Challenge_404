@@ -7,14 +7,6 @@ class HotelList extends StatelessWidget {
   final List items;
   final double imageWidth = 140.0;
 
-  Widget listing(context) {
-    return Container(
-        child: Layout.fill(context,
-            child: ListView(
-              children: items.map((hotel) => itemView(context, hotel)).toList(),
-            )));
-  }
-
   Widget itemView(context, hotel) {
     return Container(
       key: Key(hotel["_id"]),
@@ -110,7 +102,10 @@ class HotelList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return listing(context);
+    return Container(
+        child: Layout.fill(context,
+            child: ListView(
+              children: items.map((hotel) => itemView(context, hotel)).toList(),
+            )));
   }
 }
